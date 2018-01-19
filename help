@@ -1,0 +1,65 @@
+To use the SCRUD class :
+- Enable the header section of the form.
+- Create the buttons you need by following the names of the controls.
+    - btnPrecedent
+    - btnSuivant
+    - btnCreer
+    - btnModifier
+    - btnAnnuler
+    - btnSupprimer
+    - btnFermer
+    - lmRechercher
+
+- Create the code in class form module.
+
+Option Compare Database
+Option Explicit
+
+Dim mButtonNav As cBoutonNav
+Dim strOpenArgs() As String  'only if you use the openform action
+
+'in form_open
+...
+' class instance
+Set mButtonNav = CreateSCRUD()  'instanciate SCRUD class 
+
+' paramètrage de la classe avec le formulaire
+Set mButtonNav.Form = Me        'class use this form
+mButtonNav.IdFieldName = "Id_Adherent"    'idfieldname for many actions in the SCRUD class
+' Dans le cas ou l'on veut fixer un controle par défaut différent
+' de celui défini par la classe.
+mButtonNav.DefaultControlName = "Nom"     'when the first control (tab order) is not the default control.
+
+'in form_close
+...
+Set mButtonNav = Nothing  'close the SCRUD class
+
+Facultative :
+If you use before/after treatment after action class (Create/Delete...)
+'FOR DELETE ACTION
+Public Function piAfterDelete(vlId As Long) As Boolean
+
+         Dim db As DAO.Database
+         Dim i As Integer
+         
+10       On Error GoTo Errsub
+
+         'Begin of your action 
+20       Set db = CurrentDb          
+30       db.Execute "DELETE * FROM tConnexeTable WHERE Id_Adherent = " & mButtonNav.IdCurrentRecord & ";"
+         'end of your action
+         
+100      piAfterDelete = True
+
+Exitsub:
+120      On Error GoTo 0
+130      Set db = Nothing
+140      Exit Function
+
+'contract function in form class
+Public Function piBeforeUpdate() As Boolean
+Public Function piAfterBtnCreer() As Boolean
+Public Function piAfterDelete() as Boolean
+Public Function piAfterCopy() as Boolean
+
+enjoy !
