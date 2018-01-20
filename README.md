@@ -5,22 +5,22 @@ This SCRUD class (search, create, read, update, delete and more) saves time when
 
 This class has the following features:
 - Search via a drop-down list.
-- Previous / next form
+- Previous / next record
 - New record
 - Delete
 - Update
 - Cancel
 - Copy
-- To close
+- Close form
 
 Functionnalities :
-Save on demand
-Lock / unlock parameterized input fields and subforms.
-Tip integrated buttons
-Parameterizable default control
-Calling features from outside the form.
-Locking the card
-Back to the form after Delete/copy/save
-Requery from all dropdowns
+Save on demand, 
+Lock / unlock parameterized input fields and subforms, 
+Tip integrated buttons, 
+Parameterizable default control,
+Calling features from outside the form,
+Locking the card,
+Back to the form after Delete/copy/save,
+Requery from all dropdowns,
 
 This class is not suitable for the ACCESS WEB project.
